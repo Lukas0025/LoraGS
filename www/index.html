@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>LoraSSDOGS</title>
+        <script src="index.js"></script>
+        <script src="hexdump.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body>
+        <header class="p-3 text-bg-dark">
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        
+                <form class="col-12 form-group mb-3 mb-lg-0 me-lg-3">
+                    <div class="row d-flex align-items-center justify-content-center ">
+                        <div class="input-group m-2" style="width:280px">
+                            <span class="input-group-text">Freqvency</span>
+                            <input type="number" id="freq" class="form-control" onchange="tuneRadio()" value="443.43">
+                            <span class="input-group-text">Mhz</span>
+                        </div>
+
+                        <div class="input-group m-2" style="width:260px">
+                            <span class="input-group-text">Bandwidth</span>
+                            <input type="number" id="band" class="form-control col-xs-1" onchange="tuneRadio()" value="20.11">
+                            <span class="input-group-text">hz</span>
+                        </div>
+
+                        <div class="input-group m-2" style="width:220px">
+                            <span class="input-group-text">SyncWord</span>
+                            <span class="input-group-text">0x</span>
+                            <input type="text" class="form-control" onchange="tuneRadio()" id="syncword" value="11">
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="data row h-100">
+                <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary col-sm-3">
+                    <a class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 -960 960 960"><path d="M281-240q-14 0-27.5-14T240-282v-98h500v-340h100q14 0 27 14t13 29v596L721-240H281ZM80-280v-558q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80-280Zm540-220v-320H140v400l74-80h406Zm-480 0v-320 320Z"></path></svg>
+                        <span class="fs-5 fw-semibold">Messages</span>
+                    </a>
+                    <div class="list-group list-group-flush border-bottom scrollarea" id="messages">
+                    </div>
+                </div>
+
+                <div class="col-sm-9 message">
+                    <div class="row mt-2 mb-2">
+                        <div class="input-group m-2" style="width:200px">
+                            <span class="input-group-text">Sender</span>
+                            <span class="input-group-text">0x</span>
+                            <input type="text" id="sender" class="form-control" value="00" disabled>
+                        </div>
+        
+                        <div class="input-group m-2" style="width:260px">
+                            <span class="input-group-text">Packets</span>
+                            <input type="text" id="packets" class="form-control col-xs-1" value="0/0" disabled>
+                        </div>
+        
+                        <div class="input-group m-2" style="width:180px">
+                            <span class="input-group-text">Type</span>
+                            <input type="text" id="type" class="form-control" value="0" disabled>
+                        </div>
+
+                        <div class="input-group m-2" style="width:250px">
+                            <span class="input-group-text">Size</span>
+                            <input type="text" class="form-control" id="size" value="0" disabled>
+                            <span class="input-group-text">B</span>
+                        </div>
+        
+                        <div class="input-group m-2" style="width:250px">
+                            <label class="input-group-text" >Decoder</label>
+                            <select class="form-select" id="Decoder" onchange="setActiveDecoder(this.value)">
+                                <option value="hexdump" selected="">HexDump</option>
+                                <option value="text">Text</option>
+                                <option value="ukhas">UKHAS</option>
+                                <option value="ukhasespsat">ESPSAT UKHAS</option>
+                                <option value="jpeg">JPEG</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <iframe id="image" class="h-100 w-100"></iframe>
+                    <pre id="hexdump"></pre>
+                    <pre id="text"></pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
