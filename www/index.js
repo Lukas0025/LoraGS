@@ -1,8 +1,14 @@
 var gateway = `ws://${window.location.hostname}/ws`;
 var gateway = "ws://10.0.3.18/ws";
 
-var SSDO_MAX_SIZE = 255 - 22;
+var SSDO_MAX_SIZE = 230;
 var MAX_OBJECTS   = 10;
+
+var SSDO_TYPE_RAW         = 1;
+var SSDO_TYPE_ASCII       = 2; 
+var SSDO_TYPE_JPG         = 3;
+var SSDO_TYPE_ASCII_UKHAS = 4;
+var SSDO_TYPE_ASCII_JSON  = 5;
 
 var objects = [];
 var lastTime = 0;
@@ -190,8 +196,12 @@ function getPacketsRatio(obj) {
 function showMessageData(obj) {
     selected = obj.header.objId;
 
-    if (obj.header.objType == 2) {
+    if (obj.header.objType == SSDO_TYPE_JPG) {
         setActiveDecoder("jpeg");
+    } else if (obj.header.objType == SSDO_TYPE_ASCII_UKHAS) {
+        setActiveDecoder("ukhas");
+    } else if (obj.header.objType == SSDO_TYPE_ASCII) {
+        setActiveDecoder("text");
     } else {
         setActiveDecoder("hexdump");
     }
