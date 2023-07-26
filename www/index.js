@@ -1,5 +1,4 @@
 var gateway = `ws://${window.location.hostname}/ws`;
-var gateway = "ws://10.0.3.18/ws";
 
 var SSDO_MAX_SIZE = 230;
 var MAX_OBJECTS   = 10;

@@ -3,6 +3,7 @@
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include "webSites.h"
 
 #define NSS  18
 #define DIO0 26
@@ -11,8 +12,8 @@
 const char HexLUT[] = "0123456789ABCDEF";
 
 // Replace with your network credentials
-const char* ssid     = "WIFI/P";
-const char* password = "FJELOAOKSWLI57Q7";
+const char* ssid     = "XXXXXX";
+const char* password = "XXXXXX";
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -110,10 +111,7 @@ void setup() {
     
     initWebSocket();
     
-    // Route for root / web page
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) { 
-        request->send(200, "text/html", "hello");
-    });
+    ADD_WEB_FILES(server);
     
     // Start server
     server.begin();
