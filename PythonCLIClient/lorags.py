@@ -64,6 +64,8 @@ def on_message(ws, message):
         message["header"]["pktSize"]
     ))
 
+    print(message["body"])
+
     # ok now write to buffer and save to file
     for i in range(message["header"]["pktSize"]):
         OBJ_BUFFER[sender][i + pktId * SSDO_PKT_SIZE] = body[i]

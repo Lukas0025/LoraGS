@@ -44,7 +44,8 @@ if __name__ == "__main__":
 
     # read files
     for file in files:
-        c_time = os.path.getctime(file)
+        #c_time = os.path.getctime(file)
+        c_time = int(file.split(".")[0].split("t")[-1])
         dt_c   = datetime.datetime.fromtimestamp(c_time)
         print('Reading UKHAS file {} created on: {}'.format(file, dt_c))
 
